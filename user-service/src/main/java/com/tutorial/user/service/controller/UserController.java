@@ -6,6 +6,8 @@
 package com.tutorial.user.service.controller;
 
 import com.tutorial.user.service.entity.User;
+import com.tutorial.user.service.model.Bike;
+import com.tutorial.user.service.model.Car;
 import com.tutorial.user.service.service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +58,26 @@ public class UserController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(userNew);
+    }
+    
+    
+    @GetMapping("/cars/{userId}")
+    public ResponseEntity<List<Car>> getCars(@PathVariable("userId") int userId){
+        User user=userService.getUserById(userId);
+        if(user==null){
+            return ResponseEntity.notFound().build();
+        }
+        List<Car> cars=userService.getCars(userId);
+        return ResponseEntity.ok(cars);
+    }
+    
+    @GetMapping("/bikes/{userId}")
+    public ResponseEntity<List<Bike>> getBike(@PathVariable("userId") int userId){
+        User user=userService.getUserById(userId);
+        if(user==null){
+            return ResponseEntity.notFound().build();
+        }
+        List<Bike> bikes=userService.getBikes(userId);
+        return ResponseEntity.ok(bikes);
     }
 }

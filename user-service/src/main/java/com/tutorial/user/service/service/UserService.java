@@ -6,10 +6,13 @@
 package com.tutorial.user.service.service;
 
 import com.tutorial.user.service.entity.User;
+import com.tutorial.user.service.model.Bike;
+import com.tutorial.user.service.model.Car;
 import com.tutorial.user.service.repository.UserRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 
 @Service
@@ -17,6 +20,9 @@ public class UserService {
     
     @Autowired
     UserRepository userRepository;
+    
+    @Autowired
+    RestTemplate restTemplate;
     
     public List<User> getAll(){
         return userRepository.findAll();
@@ -32,4 +38,14 @@ public class UserService {
         return userNew;
     }
     
+    
+    public List<Car> getCars(int userId){
+        List<Car> cars=restTemplate.getForObject("http://localhost:8002/car/byuser/"+userId,List.class);
+        return cars;
+    }
+    
+    public List<Bike> getBikes(int userId){
+        List<Bike> bikes=restTemplate.getForObject("http://localhost:8003/bike/byuser/"+userId,List.class);
+        return bikes;
+    }
 }
