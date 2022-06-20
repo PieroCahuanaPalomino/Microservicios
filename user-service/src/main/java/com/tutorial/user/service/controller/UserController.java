@@ -118,7 +118,7 @@ public class UserController {
     
     
     
-    private ResponseEntity<List<Car>> getCarsfallBackGetCars(@PathVariable("userId") int userId,RuntimeException e){
+    private ResponseEntity<List<Car>> fallBackGetCars(@PathVariable("userId") int userId,RuntimeException e){
     	return new ResponseEntity("El usuario "+userId+" tiene los coches en el taller",HttpStatus.OK);
     }
     
@@ -127,7 +127,7 @@ public class UserController {
     }
     
     
-    private ResponseEntity<List<Bike>> getCarsfallBackGetBikes(@PathVariable("userId") int userId,RuntimeException e){
+    private ResponseEntity<List<Bike>> fallBackGetBikes(@PathVariable("userId") int userId,RuntimeException e){
     	return new ResponseEntity("El usuario "+userId+" tiene las motos en el taller",HttpStatus.OK);
     }
     
