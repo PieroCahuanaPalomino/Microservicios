@@ -116,7 +116,7 @@ public class UserController {
     	return ResponseEntity.ok(result);
     }
     
-    
+    /*Se hizo correcciones*/
     
     private ResponseEntity<List<Car>> fallBackGetCars(@PathVariable("userId") int userId,RuntimeException e){
     	return new ResponseEntity("El usuario "+userId+" tiene los coches en el taller",HttpStatus.OK);
